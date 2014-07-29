@@ -1,0 +1,17 @@
+{
+  "name": "Salesforce Canvas Seed",
+  "description": "A seed for building Salesforce Canvas apps",
+  "keywords": ["playframework", "salesforce", "seed"],
+  "website": "https://developer.salesforce.com",
+  "repository": "https://github.com/developerforce/salesforce-canvas-seed",
+  "logo": "https://pbs.twimg.com/profile_images/462384100494438400/CRyX_n9b.png",
+  "success_url": "/",
+  "env": {
+    "BUILDPACK_URL": "https://github.com/heroku/heroku-buildpack-scala",
+    "APPLICATION_SECRET": {
+      "description": "A secret used internally by Play",
+      "required": true,
+      "generator": "secret"
+    }
+  }
+}

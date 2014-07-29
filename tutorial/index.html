@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Salesforce Canvas Seed</title>
+</head>
+<body>
+<div>
+    <h2>Running the App</h2>
+
+    <p>
+        Canvas apps need to run on HTTPS.  To start Play Framework with HTTPS support you must use the command line.  If you are using the Activator UI, stop the app.  From the command line in the root directory for this project run:
+        <pre><code>activator -Dhttps.port=9443 ~run</code></pre>
+        This starts Play with HTTPS support.  Make sure it works: <a href="https://localhost:9443" target="_blank">https://localhost:9443</a>
+        You will now see instructions for setting up the Canvas app on Salesforce.  Follow those instructions and then refresh the Play app to verify everything was setup correctly.  Then check out the app in the <a href="https://login.salesforce.com/_ui/force/canvas/ui/CanvasPreviewerUi" target="_blank">Canvas Preview UI</a> on Salesforce.
+    </p>
+</div>
+<div>
+    <h2>Code Overview</h2>
+
+    <p>
+        The <a href="#code/conf/routes" class="shortcut">conf/routes</a> file determines how HTTP requests are handled.  When Salesforce loads a Canvas app it does a <code>POST</code> to the URL configured in the Connected App.  In this app that request is handled by calling the <code>index</code> method on the <a href="#code/app/controllers/Application.java" class="shortcut">controllers.Application</a> Java controller.  That method verifies that everything is configured correctly and then attempts to get the signed request.  If it succeeds then the <a href="#code/app/views/index.scala.html" class="shortcut">index.scala.html</a> template is rendered.
+    </p>
+
+    <p>
+        The <em>index</em> template loads the Canvas SDK JavaScript via the WebJar defined in the <a href="#code/build.sbt" class="shortcut">build.sbt</a> file.  Then the app's <a href="#code/app/assets/javascripts/index.js" class="shortcut">index.js</a> JavaScript is loaded which initializes the Canvas app and displays the user's name on the web page.
+    </p>
+</div>
+</body>
+</html>

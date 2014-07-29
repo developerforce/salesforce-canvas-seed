@@ -1,0 +1,32 @@
+@(remote: Boolean, oauthCallbackUrl: String)
+
+@main("OAUTH Setup Required") {
+
+    <h2>You need to setup OAUTH</h2>
+
+    Step 1a) <a href="https://login.salesforce.com/app/mgmt/forceconnectedapps/forceAppEdit.apexp">Create a new Connected App on Salesforce</a><br/>
+    Step 1b) Fill in the <em>Connected App Name</em>, <em>API Name</em>, and <em>Contact Email</em> fields.<br/>
+    Step 1c) Select <em>Enable OAuth Settings</em> and enter the following <em>Callback URL</em>: <code>@oauthCallbackUrl</code><br/>
+    Step 1d) Select the necessary scopes<br/>
+    Step 1e) Select <em>Force.com Canvas</em> and enter the following <em>Canvas App URL</em>: <code>@oauthCallbackUrl</code><br/>
+    Step 1f) For the <em>Access Method</em> select: <code>Signed Request (POST)</code><br/>
+    Step 1g) <em>Save</em> the Connected App<br/>
+        <br/>
+    @if(remote) {
+        Step 2) Set the Heroku config for your newly created <em>Consumer Secret</em> values using the <code>CANVAS_CONSUMER_SECRET</code> key name.<br/>
+    } else {
+        Step 2) Create a new <code>conf/local.conf</code> file containing the following with your newly created <em>Consumer Secret</em> values:
+        <pre><code># DO NOT SHARE THIS FILE OR PUT IT INTO YOUR SCM
+salesforce.oauth.consumer-secret="YOUR_CONSUMER_SECRET"</code></pre><br/>
+    }
+        <br/>
+    Step 3a) <a href="https://login.salesforce.com/app/mgmt/forceconnectedapps/forceInstalledConnectedAppList.apexp">Open the Connected Apps management page</a><br/>
+    Step 3b) Select <em>Edit</em> next to the name of the newly created Connected App<br/>
+    Step 3c) In the Permitted Users field, select "Admin approved users are pre-authorized" and <em>Save</em> the Connect App
+    Step 3d) Select the name of the newly create Connected App<br/>
+    Step 3d) Select <em>Manage Profiles</em><br/>
+    Step 3e) Select the <em>System Administrator</em> profile and then <em>Save</em><br/>
+        <br/>
+    Step 4) Refresh this page
+
+}
